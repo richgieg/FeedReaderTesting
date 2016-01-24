@@ -122,6 +122,8 @@ $(function() {
 
         $('body').addClass('menu-hidden');
         loadFeed(item.data('id'));
+
+        // Ensure that '#' is not appended to current URL
         return false;
     });
 
@@ -130,5 +132,8 @@ $(function() {
      */
     menuIcon.on('click', function() {
         $('body').toggleClass('menu-hidden');
+
+        // Ensure that '#' is not appended to current URL
+        return false;
     });
 }());
