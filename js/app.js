@@ -51,10 +51,10 @@ function loadFeed(id, cb) {
         contentType: 'application/json',
         success: function (result, status) {
             var container = $('.feed'),
-            title = $('.header-title'),
-            entries = result.feed.entries,
-            entriesLen = entries.length,
-            entryTemplate = Handlebars.compile($('.tpl-entry').html());
+                title = $('.header-title'),
+                entries = result.feed.entries,
+                entriesLen = entries.length,
+                entryTemplate = Handlebars.compile($('.tpl-entry').html());
 
             title.html(feedName);   // Set the header text
             container.empty();      // Empty out all previous entries
