@@ -9,11 +9,13 @@
  * to ensure they don't run until the DOM is ready.
  */
 $(function() {
+
     /* This is our first test suite - a test suite just contains
     * a related set of tests. This suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
     */
     describe('RSS feeds', function() {
+
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
          * empty. Experiment with this before you get started on
@@ -26,7 +28,6 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-
         /* This tests to makes sure that each feed object has a URL defined
          * and that it's not empty.
          */
@@ -36,7 +37,6 @@ $(function() {
                 expect(feed.url.length).not.toBe(0);
             });
         });
-
 
         /* This tests to makes sure that each feed object has a name defined
          * and that it's not empty.
@@ -49,14 +49,16 @@ $(function() {
         });
     });
 
-
     /* This test suite tests various funcionality involving the menu. */
     describe('The menu', function() {
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
+
+        /* This tests that the menu is hidden by default. The menu is hidden
+         * when the body element has the class "menu-hidden" set.
          */
+        it('is hidden by default', function() {
+            var isMenuHidden = $('body').hasClass('menu-hidden');
+            expect(isMenuHidden).toBe(true);
+        });
 
         /* TODO: Write a test that ensures the menu changes
          * visibility when the menu icon is clicked. This test
