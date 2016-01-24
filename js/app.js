@@ -1,8 +1,7 @@
 /* app.js
  *
- * This is our RSS feed reader application. It uses the Google
- * Feed Reader API to grab RSS feeds as JSON object we can make
- * use of. It also uses the Handlebars templating library and
+ * This is our RSS feed reader application. It grabs RSS feeds as JSON objects
+ * we can make use of. It also uses the Handlebars templating library and
  * jQuery.
  */
 
@@ -23,22 +22,11 @@ var allFeeds = [
     }
 ];
 
-/* This function starts up our application. The Google Feed
- * Reader API is loaded asynchonously and will then call this
- * function when the API is loaded.
- */
-function init() {
-    // Load the first feed we've defined (index of 0).
-    loadFeed(0);
-}
-
-/* This function performs everything necessary to load a
- * feed using the Google Feed Reader API. It will then
- * perform all of the DOM operations required to display
- * feed entries on the page. Feeds are referenced by their
- * index position within the allFeeds array.
- * This function all supports a callback as the second parameter
- * which will be called after everything has run successfully.
+/* This function performs everything necessary to load a feed. It will then
+ * perform all of the DOM operations required to display feed entries on the
+ * page. Feeds are referenced by their index position within the allFeeds
+ * array. This function all supports a callback as the second parameter which
+ * will be called after everything has run successfully.
  */
 function loadFeed(id, cb) {
     var feedUrl = allFeeds[id].url,
@@ -59,11 +47,11 @@ function loadFeed(id, cb) {
             title.html(feedName);   // Set the header text
             container.empty();      // Empty out all previous entries
 
-            /* Loop through the entries we just loaded via the Google
-            * Feed Reader API. We'll then parse that entry against the
-            * entryTemplate (created above using Handlebars) and append
-            * the resulting HTML to the list of entries on the page.
-            */
+            /* Loop through the entries we just loaded. We'll then parse
+             * that entry against the entryTemplate (created above using
+             * Handlebars) and append the resulting HTML to the list of
+             * entries on the page.
+             */
             entries.forEach(function(entry) {
                 container.append(entryTemplate(entry));
             });
@@ -82,12 +70,6 @@ function loadFeed(id, cb) {
         dataType: 'json'
     });
 }
-
-/* Google API: Loads the Feed Reader API and defines what function
- * to call when the Feed Reader API is done loading.
- */
-google.load('feeds', '1');
-google.setOnLoadCallback(init);
 
 /* All of this functionality is heavily reliant upon the DOM, so we
  * place our code in the $() function to ensure it doesn't execute
@@ -135,4 +117,7 @@ $(function() {
         // Ensure that '#' is not appended to current URL
         return false;
     });
+
+    // Load the first feed we've defined (index of 0).
+    loadFeed(0);
 }());
