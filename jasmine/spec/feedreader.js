@@ -67,28 +67,36 @@ $(function() {
         it('changes visibility when the menu icon is clicked', function() {
             var menuIcon = $('.menu-icon-link');
 
-            // Check that menu appears when menu icon is clicked
+            /* Check that menu appears when menu icon is clicked */
             menuIcon.trigger('click');
             expect(body.hasClass('menu-hidden')).toBe(false);
 
-            // Check that menu hides when menu icon is clicked again
+            /* Check that menu hides when menu icon is clicked again */
             menuIcon.trigger('click');
             expect(body.hasClass('menu-hidden')).toBe(true);
         });
     });
 
-
-    /* TODO: Write a new test suite named "Initial Entries" */
+    /* This test suite tests that entries appear when the app first loads. */
     describe('Initial entries', function() {
 
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
+        /* Run loadFeed, passing in a callback that executes the "done" method,
+         * which signals to Jasmine that it can procede to run the spec.
          */
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                done();
+            });
+        });
 
-    /* TODO: Write a new test suite named "New Feed Selection"
+        /* This test ensures that there is at least a single .entry element
+         * within the .feed container after loadFeed executes.
+         */
+        it('appear when the app loads', function() {
+            expect($('.feed .entry').length).not.toBe(0);
+        });
+
+    /* TODO: Write a new test suite named "New Feed Selection" */
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
@@ -96,4 +104,5 @@ $(function() {
          */
 
     });
+
 }());
