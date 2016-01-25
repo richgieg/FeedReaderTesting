@@ -95,14 +95,36 @@ $(function() {
         it('appear when the app loads', function() {
             expect($('.feed .entry').length).not.toBe(0);
         });
+    });
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    /* This test suite tests that the content actually changes when a new
+     * feed is loaded.
+     */
+    describe('New feed selection', function() {
+        var initialHTML;
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
+        /* Run loadFeed, passing in a callback that saves the HTML of the first
+         * list entry, then runs loadFeed again (targeting a different feed),
+         * passing it a callback that calls the "done" method, which signals to
+         * Jasmine that it can procede to run the spec.
          */
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                initialHTML = $('.feed .entry')[0].innerHTML;
+                loadFeed(1, function() {
+                    done();
+                })
+            });
+        });
 
+        /* This test ensures that the HTML of the first list entry after the
+         * second call to loadFeed is different than the HTML of the first list
+         * entry after the first call to loadFeed, since each call to loadFeed
+         * targeted a different RSS feed.
+         */
+        it('changes the content', function() {
+            expect($('.feed .entry')[0].innerHTML).not.toBe(initialHTML);
+        });
     });
 
 }());
