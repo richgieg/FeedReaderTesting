@@ -14,5 +14,14 @@ the HTML, CSS and JavaScript - an extremely important skill when changing teams
 or joining a new company. Good tests give you the ability to quickly analyze
 whether new code breaks an existing feature within your codebase, without
 having to manually test all of the functionality."
+```
+```
 
-Stay tuned for more info!
+## Running the Application
+
+To run this application on your local system, follow these steps:
+
+- Download the project's ZIP file
+- Extract the ZIP file
+- Run `index.html` using your favorite browser
+- Observe output from Jasmine testing framework at the bottom of the page
