@@ -79,6 +79,7 @@ $(function() {
 
 
     /* TODO: Write a new test suite named "Initial Entries" */
+    describe('Initial entries', function() {
 
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
@@ -93,4 +94,6 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+
+    });
 }());
